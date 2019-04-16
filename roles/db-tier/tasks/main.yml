@@ -1,2 +1,17 @@
 ---
-# tasks file for db-tier
+- name: install postgres
+  yum:
+    name: "{{ postgres_pkgs }}"
+    state: latest
+  register: install_pg
+  notify: restart_postgres
+
+- name: check if data directory exists
+  stat:
+    path: "{{ postgres_data_path }}"
+  register: pgdata
+
+- name: initilize postgres
+  command: postgresql-setup initdb
+  when: not pgdata.stat.exists or install_pg is changed
+  notify: restart_postgres

@@ -1,2 +1,4 @@
 ---
-# defaults file for app-tier
+tomcat_webapps_dir: /usr/share/tomcat/webapps/ROOT
+tomcat_pkgs:
+  - tomcat

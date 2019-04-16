@@ -1,2 +1,4 @@
 ---
-# defaults file for db-tier
+postgres_data_path: /var/lib/pgsql/data
+postgres_pkgs:
+  - postgresql-server

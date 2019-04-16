@@ -1,2 +1,12 @@
 ---
-# tasks file for lb-tier
+- name: install httpie and HAProxy
+  yum:
+    name: "{{ haproxy_pkgs }}"
+    state: latest
+  notify: restart_haproxy
+
+- name: configure haproxy
+  template:
+    src: haproxy.cfg.j2
+    dest: "{{ haproxy_config_path }}"
+  notify: restart_haproxy

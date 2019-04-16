@@ -1,13 +1,14 @@
+---
 - hosts: workstation
-  gather_facts: true
+  gather_facts: false
   roles:
   - name: osp-facts
 
 # Setup front-end load balancer tier
 
-
 - name: setup load-balancer tier
   hosts: frontends
+  gather_facts: false
   become: yes
   roles:
     - {name: base-config, tags: base-config}
@@ -16,9 +17,9 @@
 # Setup application servers tier
 
 - name: setup app tier
+  gather_facts: false
   hosts: apps
   become: yes
-  gather_facts: false
   roles:
     - {name: base-config, tags: base-config}
     - {name: app-tier, tags: [apps, tomcat]}
@@ -26,6 +27,7 @@
 # Setup database tier
 
 - name: setup database tier
+  gather_facts: false
   become: yes
   hosts: appdbs
   roles:

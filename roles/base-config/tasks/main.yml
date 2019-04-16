@@ -1,2 +1,5 @@
 ---
-# tasks file for base-config
+- name: Set up internal repo
+  get_url:
+    url: "{{repo_url}}/repo/internal.repo"
+    dest: /etc/yum.repos.d/internal.repo

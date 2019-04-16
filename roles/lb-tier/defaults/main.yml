@@ -1,2 +1,4 @@
 ---
-# defaults file for lb-tier
+haproxy_config_path: /etc/haproxy/haproxy.cfg
+haproxy_pkgs:
+  - haproxy
