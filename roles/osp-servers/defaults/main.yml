@@ -1,5 +1,6 @@
 ---
 # defaults file for osp.servers
+repo_url: http://www.opentlc.com/download/ansible_bootcamp
 cloud: ospcloud
 state: present
 image: rhel-guest
@@ -10,7 +11,7 @@ ext_net: ext_network
 userdata: |
   #!/bin/bash
   curl -o /tmp/openstack.pub \
-  {{ vault_repo_url }}/openstack_keys/openstack.pub
+  {{ repo_url }}/openstack_keys/openstack.pub
   cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
-  curl -o /tmp/internal.repo {{ vault_repo_url }}/repo/internal.repo
+  curl -o /tmp/internal.repo {{ repo_url }}/repo/internal.repo
   cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
